@@ -29,18 +29,18 @@ while True:
         #landmarks = handLms in results.multi_hand_landmarks
         for handLms in results.multi_hand_landmarks:
 
-            #open = dist(handLms.landmark[0].x,handLms.landmark[0].y,handLms.landmark[14].x,handLms.landmark[14].y) < dist(handLms.landmark[0].x,handLms.landmark[0].y,handLms.landmark[16].x,handLms.landmark[16].y) 
+            open = dist(handLms.landmark[0].x,handLms.landmark[0].y,handLms.landmark[14].x,handLms.landmark[14].y) < dist(handLms.landmark[0].x,handLms.landmark[0].y,handLms.landmark[16].x,handLms.landmark[16].y) 
             
-            #if open == False:
+            if open == False:
                 curdist = -dist(handLms.landmark[4].x,handLms.landmark[4].y,handLms.landmark[8].x,handLms.landmark[8].y) /  (dist(handLms.landmark[2].x,handLms.landmark[2].y,handLms.landmark[5].x,handLms.landmark[5].y) * 2)
                 curdist = curdist * 100
-                curdist = -100 - curdist
+                curdist = -96 - curdist
                 curdist = min(0,curdist)
                 volume.SetMasterVolumeLevel(curdist,None)
                 mpDraw.draw_landmarks(img,handLms,mpHands.HAND_CONNECTIONS)    
 
 
     cv2.imshow('Pipe Hands', img)
-    if cv2.waitKey(5) & 0xFF == 27:
+    if cv2.waitKey(1) == ord('q'):
      break
 cap.release()
